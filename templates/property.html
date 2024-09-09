@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Property Information Form</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <h1>Property Information</h1>
+        <form>
+            <table>
+            <tr>
+                <th>Name</th>
+                <td><input type="text" id="p_name" name="p_name" placeholder="Enter the property name" required></td>
+            </tr>
+            <tr>
+                <th>Property Type</th>
+                <td>
+                    <select id="p_type" name="p_type" required>
+                        <option>Apartment</option>
+                        <option>Single-family Home</option>
+                        <option>Land</option>
+                        <option>Office</option>
+                        <option>Other</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td><input type="text" id="p_price" name="p_price" placeholder="Enter the price" required></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><textarea id="p_address" name="p_address" rows=5 required></textarea></td>
+            </tr>
+            </table>
+            <input type="hidden" id="parameters" name="parameters" value='{{ parameters }}'>
+            <button type="button" onclick="newNote()">New</button>
+            <!-- <button type="button" onclick="openNote()">Edit</button> -->
+        </form>
+    <script>
+        // Create a new note
+        function newNote() {
+            let parameters = document.getElementById("parameters").value;
+            url = 'gembanotech6:///nsk/new' + parameters;
+            // Setting property info: The tag scheme includes Name, Type, Price, and Address
+            url += '&Name='     + encodeURI(document.getElementById("p_name").value);
+            url += '&Type='     + encodeURI(document.getElementById("p_type").value);
+            url += '&Price='    + document.getElementById("p_price").value;
+            url += '&Address='  + encodeURI(document.getElementById("p_address").value);
+            //console.log(url)
+            window.location.href = url;
+        }
+
+        // Open the created note to edit - Not used yet
+        function openNote() {
+            let parameters = document.getElementById("parameters").value;
+            url = 'gembanotech6:///nsk/open' + parameters;
+            // Setting property info: The tag scheme includes Name, Type, Price, and Address
+            url += '&Name='     + encodeURI(document.getElementById("p_name").value);
+            url += '&Type='     + encodeURI(document.getElementById("p_type").value);
+            url += '&Price='    + document.getElementById("p_price").value;
+            url += '&Address='  + encodeURI(document.getElementById("p_address").value);
+            window.location.href = url;
+        }
+    </script>
+    </body>
+</html>
