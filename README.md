@@ -83,8 +83,8 @@ When you click both links, you will be asked to open the GEMBA Note app.
 | access_token  | - | The token to access the GEMBA Note server |
 | template_id | TEMPLATE_ID | Target note template ID |
 | folder_uri  | FOLDER_URI | Folder to store the created note |
-| internal_id | NOTE_NEW_URI | ID internally used in the server |
-| note_new_uri | - | Endpoint to get a URL of the created note |
+| internal_id | - | ID internally used in the server |
+| note_new_uri | NOTE_NEW_URI | Endpoint to get a URL of the created note |
 | - | CSV_FILE | CSV file name to generate multiple notes |
 | recordset_uri | RECORDSET_URI | Endpoint to get a recordset |
 | page_template_id | PAGE_TEMPLATE_ID | Target page template ID |
