@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>物件情報フォーム</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <h1>物件情報</h1>
+        <form id="propertyForm">
+            <table>
+            <tr>
+                <th>名称</th>
+                <td><input type="text" id="p_name" name="p_name" placeholder="物件名称を記入" required></td>
+            </tr>
+            <tr>
+                <th>物件タイプ</th>
+                <td>
+                    <select id="p_type" name="p_type" required>
+                        <option>アパート</option>
+                        <option>一戸建て</option>
+                        <option>土地</option>
+                        <option>オフィス</option>
+                        <option>その他</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>価格</th>
+                <td><input type="text" id="p_price" name="p_price" placeholder="価格を記入" required></td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td><textarea id="p_address" name="p_address" rows=5 required></textarea></td>
+            </tr>
+            </table>
+            <input type="hidden" id="protocol" name="protocol" value={{ protocol }}>
+            <input type="hidden" id="parameters" name="parameters" value={{ parameters }}>
+            <input type="submit" value="New">
+        </form>
+    <script>
+        let form = document.querySelector("#propertyForm");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Not to reload the page
+            newNote();
+        });
+    
+        // Create a new note
+        function newNote() {
+            let protocol = document.getElementById("protocol").value;
+            if (protocol == 'None') {
+                alert("APP_URI_SCHEMEが設定されていません。");
+                return;
+            }
+            let parameters = document.getElementById("parameters").value;
+            if (parameters == '') {
+                alert("環境変数を確認してください。");
+                return;
+            }
+
+            let url = protocol + ':///nsk/new' + parameters;
+            // Setting property info: The tag scheme includes Name, Type, Price, and Address
+            url += '&Name='     + encodeURI(document.getElementById("p_name").value);
+            url += '&Type='     + encodeURI(document.getElementById("p_type").value);
+            url += '&Price='    + document.getElementById("p_price").value;
+            url += '&Address='  + encodeURI(document.getElementById("p_address").value);
+            //console.log(url)
+            window.location.href = url;
+        }
+
+    </script>
+    </body>
+</html>

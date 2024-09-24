@@ -13,7 +13,6 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from typing import Dict, Any
 import urllib.parse
     
 app = FastAPI()
@@ -21,20 +20,24 @@ app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # Collect parameters from the environment variables defined in env.bat or env.sh
+# Application Language
+appLang = os.environ.get("APP_LANG")
+# URI Scheme for the application
+uriScheme = os.environ.get("APP_URI_SCHEME")
 # template_id
-template = os.environ.get("TEMPLATE_ID")
+noteTemplate = os.environ.get("NOTE_TEMPLATE_ID")
 # folder_uri
-folder = os.environ.get("FOLDER_URI")
+folderUri = os.environ.get("FOLDER_URI")
 # note_new_uri
-note_uri = os.environ.get("NOTE_NEW_URI")
+noteUri = os.environ.get("NOTE_NEW_URI")
 # CSV fuke
-csv_file = os.environ.get("CSV_FILE")
+csvFile = os.environ.get("CSV_FILE")
 # recordset_uri
-recordset_uri = os.environ.get("RECORDSET_URI")
+recordsetUri = os.environ.get("RECORDSET_URI")
 # page_template_id
-page_template = os.environ.get("PAGE_TEMPLATE_ID")
+pageTemplate = os.environ.get("PAGE_TEMPLATE_ID")
 # tag_namespace
-tag_namespace = os.environ.get("TAG_NAMESPACE")
+tagNamespace = os.environ.get("TAG_NAMESPACE")
 
 #
 # GET Method
@@ -49,13 +52,20 @@ tag_namespace = os.environ.get("TAG_NAMESPACE")
 #  Response to return HTML text
 # 
 # [NOTES]
-#  Open templates/index.html
+#  Open templates/index_<appLang>.html
 #
 @app.get("/", response_class=HTMLResponse)
 async def topPage(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "title": "Property Management Web App"})
+    targetPage = "index_" + appLang + ".html"
+    title = "Property Management Web App"
+    
+    if appLang == "ja":
+        title = "不動産管理アプリ"
+
+    return templates.TemplateResponse(targetPage, {"request": request, "title": title})
 #
 # HISTORY
+# [2] SEP-24-2024 - Used app language
 # [1] SEP-09-2024 - Initial version
 #
 
@@ -85,24 +95,29 @@ async def topPage(request: Request):
 async def createSingleNote(request: Request):
     para = "?"
 
+    # Access ID and Token are temporarily set
     id = 'abcdefg'
     token = 'abcdefg123'
+
     para += 'access_id=' + id + '&access_token=' + token
     # template_id
-    para += '&template_id=' + urllib.parse.quote(template)
+    para += '&template_id=' + urllib.parse.quote(noteTemplate)
     # folder_uri
-    para += '&folder_uri=' + urllib.parse.quote(folder)
+    para += '&folder_uri=' + urllib.parse.quote(folderUri)
     # internal_id
     internal = '123456789'
     para += '&internal_id=' + internal
     # note_new_uri (for new)
-    para += '&note_new_uri=' + urllib.parse.quote(note_uri)
-    # note_uri (for open)
+    para += '&note_new_uri=' + urllib.parse.quote(noteUri)
+    # note_uri (to open the created note) - Not used
     #para += '&note_uri=' + urllib.parse.quote(note_uri)
-   
-    return templates.TemplateResponse("property.html", {"request": request, "parameters": para})
+
+    targetPage = "property_" + appLang + ".html"
+    
+    return templates.TemplateResponse(targetPage, {"request": request, "protocol": uriScheme, "parameters": para})
 #
 # HISTORY
+# [1] SEP-24-2024 - Added uriScheme and appLang
 # [1] SEP-09-2024 - Initial version
 #
 
@@ -132,30 +147,35 @@ async def createSingleNote(request: Request):
 #
 @app.get("/multiple")
 async def createMultipleNotes(request: Request):
-    url = 'gembanotech6:///nsk/new?'
+    url = uriScheme + ':///nsk/new?'
 
+    # Access ID and Token are temporarily set
     id = 'abcdefg'
     token = 'abcdefg456'
+
     url += 'access_id=' + id + '&access_token=' + token
     # template_id
-    url += '&template_id=' + urllib.parse.quote(template)
+    url += '&template_id=' + urllib.parse.quote(noteTemplate)
     # folder_uri
-    url += '&folder_uri=' + urllib.parse.quote(folder)
+    url += '&folder_uri=' + urllib.parse.quote(folderUri)
     # internal_id
     internal = '987654321'
     url += '&internal_id=' + internal
     # note_new_uri
-    url += '&note_new_uri=' + urllib.parse.quote(note_uri)
+    url += '&note_new_uri=' + urllib.parse.quote(noteUri)
     # recordset_uri
-    url += '&recordset_uri=' + urllib.parse.quote(recordset_uri)
+    url += '&recordset_uri=' + urllib.parse.quote(recordsetUri)
     # page_template_id
-    url += '&page_template_id=' + urllib.parse.quote(page_template)
+    url += '&page_template_id=' + urllib.parse.quote(pageTemplate)
     # tag_namespace
-    url += '&tag_namespace=' + urllib.parse.quote(tag_namespace)
+    url += '&tag_namespace=' + urllib.parse.quote(tagNamespace)
+
+    targetPage = "multiple_" + appLang + ".html"
     
-    return templates.TemplateResponse("multiple.html", {"request": request, "url": url})
+    return templates.TemplateResponse(targetPage, {"request": request, "url": url})
 #
 # HISTORY
+# [2] SEP-24-2024 - Added uriScheme and appLang
 # [1] SEP-09-2024 - Initial version
 #
 
@@ -204,7 +224,7 @@ def getRecordSet():
     output = []
     # Read a CSV file
     skip = True
-    with open(csv_file) as f:
+    with open(csvFile, encoding="utf-8") as f:
         reader = csv.reader(f, delimiter=',')
         for row in reader:
             if skip == False:
@@ -216,5 +236,6 @@ def getRecordSet():
     return output
 #
 # HISTORY
+# [2] SEP-24-2024 - Added the encoding to open()
 # [1] SEP-09-2024 - Initial version
 #

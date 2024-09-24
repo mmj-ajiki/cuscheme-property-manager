@@ -1,3 +1,12 @@
+/*
+ * [FILE] styles.css
+ *
+ * [DESCRIPTION]
+ *  Stylesheet of the property form
+ *
+ * [NOTES]
+ */
+
 body {
     font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -38,18 +47,52 @@ table tr td {
     padding: 6px 13px;
 }
 
-input, select {
+input[type="text"], select {
+    border: 0;
+    padding: 3px;
+    font-size: 1.1em;
+    color: #444;
+    border: solid 1px #ccc;
+    margin: 0 0 3px;
     width: 300px;
-    height: 25px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+input[type="submit"] {  
+	border-top: 1px solid #ccc;  
+	border-right: 1px solid #999;  
+	border-bottom: 1px solid #999;  
+	border-left: 1px solid #ccc;  
+	padding: 5px 20px;  
+	font-weight: bold;  
+	cursor: pointer;  
+    color: #666;
+    margin: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+button {  
+	border-top: 1px solid #ccc;  
+	border-right: 1px solid #999;  
+	border-bottom: 1px solid #999;  
+	border-left: 1px solid #ccc;  
+	padding: 5px 20px;  
+	font-weight: bold;  
+	cursor: pointer;  
+    color: #666;
+    margin: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
 textarea {
     resize: none;
     width: 300px;
     height: 100px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-button {
-    font-weight: bold;
-    margin: 10px;
-}
+/*
+ * HISTORY
+ * [2] SEP-24-2024 - Arranged the button style
+ * [1] SEP-09-2024 - Initial version
+ */

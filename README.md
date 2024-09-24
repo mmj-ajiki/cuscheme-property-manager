@@ -1,8 +1,12 @@
 # cuscheme-property-manager
 
+[[Japanese](./README_ja.md)]
+
 ## Sample Web App based on Custom URL Scheme
 
-This server provides endpoints that can generate property management notes using the Custom URL Scheme in GEMBA Note, a digital note product of MetaMoJi Corporation.
+This server provides endpoints that can generate property management forms using the Custom URL Scheme in GEMBA Note, a digital note product of MetaMoJi Corporation.
+
+This version is implemented on Python and FastAPI.
 
 ### Installing Python
 
@@ -18,7 +22,8 @@ pip install -r requirements.txt
 
 ### Setting the Environment Variables
 
-Several environment variables are defined in env.bat or env.sh. Update either of files with your note template, page template, folder, and target tag scheme. To get the values, please have a look at the section 'Custom URL Scheme Parameres' below.  
+Several environment variables are defined in env.bat or env.sh. Update either of files with your note template, page template, folder to store generated notes, and target tag scheme.
+To get these values, please have a look at the section 'Custom URL Scheme Parameres' below.  
 
 Using a command prompt, set the variables with the batch file or the shell file.
 
@@ -60,9 +65,9 @@ You can get the top page as follows:
 
 ![Figure 1: Top Page][img1]
 
-- Single Note Generation
+- Single Form Generation
   - Create a property form page in a new note
-- Multiple Notes Generation
+- Multiple Forms Generation
   - Create a set of property form pages in a new note by referring to a CSV file ([csv/propertyList.csv](csv/propertyList.csv))
 
 When you click both links, you will be asked to open the GEMBA Note app.
@@ -79,13 +84,15 @@ When you click both links, you will be asked to open the GEMBA Note app.
 
 |  Parameter Name  | Environment Variable | Description  |
 | ---- | ---- | ---- |
+| - | APP_LANG | Language: en - English ja - Japanese |
+| - | APP_URI_SCHEME | URI scheme to invoke GEMBA Note or GEMBA Note Viewer |
 | access_id | - | Key for keeing the specified access token |
 | access_token  | - | The token to access the GEMBA Note server |
-| template_id | TEMPLATE_ID | Target note template ID |
+| template_id | NOTE_TEMPLATE_ID | Target note template ID |
 | folder_uri  | FOLDER_URI | Folder to store the created note |
 | internal_id | - | ID internally used in the server |
 | note_new_uri | NOTE_NEW_URI | Endpoint to get a URL of the created note |
-| - | CSV_FILE | CSV file name to generate multiple notes |
+| - | CSV_FILE | CSV file name to generate multiple pages |
 | recordset_uri | RECORDSET_URI | Endpoint to get a recordset |
 | page_template_id | PAGE_TEMPLATE_ID | Target page template ID |
 | tag_namespace | TAG_NAMESPACE | Target tag namespace |
@@ -108,7 +115,7 @@ To get this ID,
 #### How to get a folder URI
 
 A created note is placed in the specified URL of the 'folder_uri' parameter.
-To get the ID, right-click or long-press on the target folder and select **URL** in the context menu.
+To get the URI, right-click or long-press on the target folder and select **URL** in the context menu.
 
 ![Figure 3: How to get a folder URI][img3]
 
@@ -146,4 +153,5 @@ To get this namespace,
 
 ### Updated History
 
+- SEP-24-2024 - Added APP_LANG and APP_URI_SCHEME
 - SEP-09-2024 - First release
