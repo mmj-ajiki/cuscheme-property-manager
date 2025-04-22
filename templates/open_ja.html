@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>物件情報フォーム</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <a href=".">トップページへ</a>
+        <h1>最後に作成したノートを開く</h1>
+        <form id="openProperty" action="#">
+            <ul>
+                <li>{{ note_id }}</li>
+            </ul>
+            <input type="hidden" id="protocol" name="protocol" value={{ protocol }}>
+            <input type="hidden" id="parameters" name="parameters" value={{ parameters }}>
+            <input type="submit" value="開く">
+        </form>
+    <script>
+        let form = document.querySelector("#openProperty");
+        form.addEventListener("submit", function(event) {
+            openNote();
+        });
+    
+        // Open the note specified in the parameters (note_uri)
+        function openNote() {
+            let protocol = document.getElementById("protocol").value;
+            if (protocol == 'None') {
+                alert("APP_URI_SCHEMEが設定されていません。");
+                return;
+            }
+            let parameters = document.getElementById("parameters").value;
+            if (parameters == '') {
+                alert("環境変数を確認してください。");
+                return;
+            }
+
+            let url = protocol + ':///nsk/open' + parameters;
+            //console.log(url)
+            window.location.href = url;
+        }
+
+    </script>
+    </body>
+</html>

@@ -12,6 +12,9 @@
     <ul>
         <li><a href="/single">1つのページを生成</a></li>
         <li><a href="/multiple">複数のページを生成</a></li>
+        {% if note_id != None %}
+        <li><a href="/open">最後に生成したノートを開く</a></li>
+        {% endif %}
     </ul>   
 </body>
 </html>

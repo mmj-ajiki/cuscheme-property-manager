@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Property Information Form</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+    <body>
+        <a href=".">Back to Top</a>
+        <h1>Open the last created note</h1>
+        <form id="openProperty" action="#">
+            <ul>
+                <li>{{ note_id }}</li>
+            </ul>
+            <input type="hidden" id="protocol" name="protocol" value={{ protocol }}>
+            <input type="hidden" id="parameters" name="parameters" value={{ parameters }}>
+            <input type="submit" value="Open">
+        </form>
+    <script>
+        let form = document.querySelector("#openProperty");
+        form.addEventListener("submit", function(event) {
+            openNote();
+        });
+    
+        // Open the note specified in the parameters (note_uri)
+        function openNote() {
+            let protocol = document.getElementById("protocol").value;
+            if (protocol == 'None') {
+                alert("APP_URI_SCHEME is not specified.");
+                return;
+            }
+            let parameters = document.getElementById("parameters").value;
+            if (parameters == '') {
+                alert("Check environment variables.");
+                return;
+            }
+
+            let url = protocol + ':///nsk/open' + parameters;
+            //console.log(url)
+            window.location.href = url;
+        }
+
+    </script>
+    </body>
+</html>

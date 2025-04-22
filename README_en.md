@@ -1,0 +1,167 @@
+# cuscheme-property-manager
+
+[[Japanese](./README_ja.md)]
+
+## Sample Web App based on Custom URL Scheme
+
+This server provides endpoints that can generate property management forms using the Custom URL Scheme in GEMBA Note, a digital note product of MetaMoJi Corporation.
+
+This version is implemented on Python, FastAPI and Jinja2 (template engine).
+
+### Installing Python
+
+Referring to [https://www.python.org/downloads/](https://www.python.org/downloads/), install Python.
+
+### Installing the Server
+
+Using a command prompt, run the following command to instal dependent packages of Python.
+
+```bash
+pip install -r requirements.txt
+```
+
+### GEMBA Note Backup File
+
+Click the following link to download the backup file and restore the property management app in GEMBA Note.
+
+| File name | Description |
+| ----- | ----- |
+| [PropertyManagementMaster__1.0.2__backup.gncproj](https://product.metamoji.com/manual/gemba_apps/gemba_dev_basic/en/dev_kit/backup/PropertyManagementMaster__1.0.2__backup.gncproj) | Backup file for the Property Management package |
+
+### Setting the Environment Variables
+
+Necessary environment variables are defined in **.env_en**. Update the file to set your note template (NOTE_TEMPLATE_ID), page template (PAGE_TEMPLATE_ID), folder to store generated notes (FOLDER_URI), and target tag scheme (TAG_NAMESPACE).
+Then rename it to **.env**.
+
+#### Custom URL Scheme Parameres
+
+Inside the server program, the necessary parameters for custom URL scheme are set with environment variables.
+
+|  Parameter Name  | Environment Variable | Description  |
+| ---- | ---- | ---- |
+| - | APP_LANG | Language: en - English ja - Japanese |
+| - | APP_URI_SCHEME | URI scheme to invoke GEMBA Note or GEMBA Note Viewer |
+| access_id | - | Key for keeing the specified access token |
+| access_token  | - | The token to access the GEMBA Note server |
+| template_id | NOTE_TEMPLATE_ID | Target note template ID |
+| page_template_id | PAGE_TEMPLATE_ID | Target page template ID |
+| folder_uri  | FOLDER_URI | Folder to store the created note |
+| tag_namespace | TAG_NAMESPACE | Target tag namespace |
+| internal_id | - | ID internally used in the server |
+| note_new_uri | NOTE_NEW_URI | Endpoint to get a URL of the created note |
+| - | CSV_FILE | CSV file name to generate multiple pages |
+| recordset_uri | RECORDSET_URI | Endpoint to get a recordset |
+
+#### How to get a note template ID
+
+The target note to be created is specified with the 'template_id' parameter.
+To get this ID,
+
+- Click on the **Create Note** button
+- Select the **Note Template** tab
+- Right-click or long-press on the target template
+- Choose **Template Info**
+- Copy the URL and set it to **NOTE_TEMPLATE_ID** in .env file
+
+![Figure 1: How to get a template ID][img1]
+
+[img1]: ./image/note_template_id.png
+
+#### How to get a page template ID
+
+The target page to be created is specified with the 'page_template_id' parameter.
+To get this ID,
+
+- Click on the **Create Note** button
+- Select the **Paper Template** tab
+- Right-click or long-press on the target template
+- Choose **Template Info**
+- Copy the URL and set it to **PAGE_TEMPLATE_ID** in .env file
+
+![Figure 2: How to get a page template ID][img2]
+
+[img2]: ./image/page_template_id.png
+
+#### How to get a folder URI
+
+A created note is placed in the specified URL of the 'folder_uri' parameter.
+To get the URI, right-click or long-press on the target folder and select **URL** in the context menu. Then copy the URL and set it to **FOLDER_URI** in .env file.
+
+![Figure 3: How to get a folder URI][img3]
+
+[img3]: ./image/folder_url.png
+
+#### How to get a tag namespace
+
+The target tag namespace is referred to from the 'tag_namespace' parameter.
+To get this namespace,
+
+- Right-click or long-press on the target development package
+- Select **More** > **Tag Schema List** from the context menu
+- On the Tag Schema List dialog, select the target tag schema
+- Right-click or long-press on the **Tag ID** on the Edit Tag Schema dialog
+- Select **Copy to Clipboard** and set it to **TAG_NAMESPACE** in .env file
+
+![Figure 4: How to get a tag namespace][img4]
+
+[img4]: ./image/tag_namespace.png
+
+### Running the Server
+
+Using a command prompt, run the following command to run the app.
+
+For debug:
+
+```bash
+uvicorn main:app --reload 
+```
+
+For production:
+
+```bash
+uvicorn main:app
+```
+
+The default port number is **8000**.
+Add **--port [Port Number]** to specify a different port number.
+
+### Accessing the Server
+
+Using a web browser, access to the following URL:
+
+[http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+You can get the top page as follows:
+
+![Figure 5: Top Page][img5]
+
+[img5]: ./image/top_page.png
+
+- Single Form Generation
+  - Move to the property form page.
+  - When you click the New button, you will be asked to open the eYACHO/GEMBA Note app.
+  ![Figure 6: Single Page Generation][img6]
+- Multiple Forms Generation
+  - A set of property form pages are generated by referring to a CSV file ([csv/propertyList_en.csv](csv/propertyList_en.csv)).
+  - When you click the link (Click here...), the generation will start.
+  ![Figure 7: Multiple Pages Generation][img7]
+
+[img6]: ./image/single_property_page.png
+
+[img7]: ./image/multi_property_page.png
+
+The following link is available when a note is successfully generated with either of the above two links.
+
+- Open the last generated note
+  - When you click the Open button, the shown note ID on the page is opened.
+
+### Notice
+
+This sever is not designed to allow multiple users access.
+
+### Updated History
+
+- APR-22-2025 - Referred to .env and added 'Open the last generated note'
+- MAR-03-2025 - Upgraded backup file froｍ 1.0.1 to 1.0.2
+- SEP-24-2024 - Added APP_LANG and APP_URI_SCHEME
+- SEP-09-2024 - First release

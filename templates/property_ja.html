@@ -6,8 +6,9 @@
         <link rel="stylesheet" href="/static/css/styles.css">
     </head>
     <body>
+        <a href=".">トップページへ</a>
         <h1>物件情報</h1>
-        <form id="propertyForm">
+        <form id="propertyForm" action="#">
             <table>
             <tr>
                 <th>名称</th>
@@ -36,12 +37,12 @@
             </table>
             <input type="hidden" id="protocol" name="protocol" value={{ protocol }}>
             <input type="hidden" id="parameters" name="parameters" value={{ parameters }}>
-            <input type="submit" value="New">
+            <input type="submit" value="作成">
         </form>
     <script>
         let form = document.querySelector("#propertyForm");
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Not to reload the page
+            // event.preventDefault(); // Not to reload the page
             newNote();
         });
     

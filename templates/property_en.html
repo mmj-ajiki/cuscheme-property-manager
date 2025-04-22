@@ -7,8 +7,9 @@
         <link rel="icon" type="image/png" href="/static/favicon.ico">
     </head>
     <body>
+        <a href=".">Back to Top</a>
         <h1>Property Information</h1>
-        <form id="propertyForm">
+        <form id="propertyForm" action="#">
             <table>
             <tr>
                 <th>Name</th>
@@ -42,7 +43,7 @@
     <script>
         let form = document.querySelector("#propertyForm");
         form.addEventListener("submit", function(event) {
-            event.preventDefault(); // Not to reload the page
+            // event.preventDefault(); // Not to reload the page
             newNote();
         });
     
