@@ -161,6 +161,7 @@ This sever is not designed to allow multiple users access.
 
 ### Updated History
 
+- OCT-23-2025 - Modified for V7
 - APR-22-2025 - Referred to .env and added 'Open the last generated note'
 - MAR-03-2025 - Upgraded backup file froｍ 1.0.1 to 1.0.2
 - SEP-24-2024 - Added APP_LANG and APP_URI_SCHEME

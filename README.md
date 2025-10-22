@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 ### 環境変数を設定する
 
-日本語環境設定ファイルのテンプレートとして **.env_jp** があるので、ノートテンプレートID (NOTE_TEMPLATE_ID)、ページテンプレートID (PAGE_TEMPLATE_ID)、保存するフォルダ (FOLDER_URI)、対象タグスキーマの名前空間 (TAG_NAMESPACE)を設定する。
+日本語環境設定ファイルのテンプレートとして **.env_ja** があるので、ノートテンプレートID (NOTE_TEMPLATE_ID)、ページテンプレートID (PAGE_TEMPLATE_ID)、保存するフォルダ (FOLDER_URI)、対象タグスキーマの名前空間 (TAG_NAMESPACE)を設定する。
 このファイルを **.env** に名称変更する。
 
 #### カスタムURLスキーマのパラメータと環境変数の関係
@@ -174,6 +174,7 @@ Webブラウザを開き、次のURLへアクセスする。
 
 ### 変更履歴
 
+- 2025-10-23 - GEMBA Note V7に伴う更新
 - 2025-04-22 - 環境変数.envを参照、「最後に生成したノートを開く」を追加
 - 2025-03-03 - バックアップファイルを1.0.1から1.0.3へ更新
 - 2024-09-24 - 環境変数APP_LANGとAPP_URI_SCHEMEを追加
