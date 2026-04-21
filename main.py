@@ -100,9 +100,13 @@ async def topPage(request: Request):
     if appLang == "ja":
         title = "不動産管理アプリ"
 
-    return templates.TemplateResponse(targetPage, {"request": request, "title": title, "note_id": g_LastNoteId})
+    return templates.TemplateResponse(
+        name=targetPage, 
+        context={"request": request, "title": title, "note_id": g_LastNoteId},
+        request=request)
 #
 # HISTORY
+# [4] APR-21-2026 - Fixed TemplateResponse() due to the Starlette change
 # [3] APR-22-2025 - Added note_id parameter
 # [2] SEP-24-2024 - Used app language
 # [1] SEP-09-2024 - Initial version
@@ -151,9 +155,13 @@ async def createSingleNote(request: Request):
 
     targetPage = "property_" + appLang + ".html"
     
-    return templates.TemplateResponse(targetPage, {"request": request, "protocol": uriScheme, "parameters": para})
+    return templates.TemplateResponse(
+        name=targetPage, 
+        context={"request": request, "protocol": uriScheme, "parameters": para},
+        request=request)
 #
 # HISTORY
+# [3] APR-21-2026 - Fixed TemplateResponse() due to the Starlette change
 # [2] SEP-24-2024 - Added uriScheme and appLang
 # [1] SEP-09-2024 - Initial version
 #
@@ -209,9 +217,13 @@ async def createMultipleNotes(request: Request):
 
     targetPage = "multiple_" + appLang + ".html"
     
-    return templates.TemplateResponse(targetPage, {"request": request, "url": url})
+    return templates.TemplateResponse(
+        name=targetPage, 
+        context={"request": request, "url": url},
+        request=request)
 #
 # HISTORY
+# [3] APR-21-2026 - Fixed TemplateResponse() due to the Starlette change
 # [2] SEP-24-2024 - Added uriScheme and appLang
 # [1] SEP-09-2024 - Initial version
 #
@@ -249,9 +261,13 @@ async def openLastNote(request: Request):
 
     targetPage = "open_" + appLang + ".html"
     
-    return templates.TemplateResponse(targetPage, {"request": request, "protocol": uriScheme, "parameters": para, "note_id": g_LastNoteId})
+    return templates.TemplateResponse(
+        name=targetPage, 
+        context={"request": request, "protocol": uriScheme, "parameters": para, "note_id": g_LastNoteId},
+        request=request)
 #
 # HISTORY
+# [2] APR-21-2026 - Fixed TemplateResponse() due to the Starlette change
 # [1] APR-22-2025 - Initial version
 #
 

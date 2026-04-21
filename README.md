@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
 | ファイル名 | 説明 |
 | ----- | ----- |
-| [PropertyManagementMaster__1.0.3__backup.gncproj](https://product.metamoji.com/manual/gemba_apps/gemba_dev_basic/jp/dev_kit/backup/PropertyManagementMaster__1.0.3__backup.gncproj) | 不動産管理パッケージのバックアップファイル |
+| [PropertyManagementMaster__1.0.4__backup.gncproj](https://product.metamoji.com/manual/gemba_apps/gemba_dev_basic/jp/dev_kit/backup/PropertyManagementMaster__1.0.4__backup.gncproj) | 不動産管理パッケージのバックアップファイル |
 
 ### 環境変数を設定する
 
@@ -37,20 +37,20 @@ pip install -r requirements.txt
 
 本PythonプログラムからカスタムURL起動に必要とするパラメータへの値は環境変数を通して与える。
 
-| パラメータ名 | 環境変数名 | 説明  |
+| パラメータ名 | 環境変数名 | 説明 |
 | ---- | ---- | ---- |
 | - | APP_LANG | 使用する言語 en - 英語, ja - 日本語 |
 | - | APP_URI_SCHEME | どのアプリを起動するか、そのURIスキーム |
 | access_id | - | アクセストークンとなるキーを設定する |
-| access_token  | - | eYACHO / GEMBA Noteへアクセスするトークン |
+| access_token | - | eYACHO / GEMBA Noteへアクセスするトークン |
 | template_id | NOTE_TEMPLATE_ID | 対象となるノートテンプレートID |
 | page_template_id | PAGE_TEMPLATE_ID | 対象となるページテンプレートID |
-| folder_uri  | FOLDER_URI | 作成するノートを保存するフォルダURI |
+| folder_uri | FOLDER_URI | 作成するノートを保存するフォルダURI |
 | tag_namespace | TAG_NAMESPACE | 対象となるタグスキーマの名前空間 |
 | internal_id | - | サーバーでの内部ID |
 | note_new_uri | NOTE_NEW_URI | 作成されたノート情報を返すエンドポイント（POSTメソッド） |
 | - | CSV_FILE | 複数ページを作成するCSVファイル |
-| recordset_uri | RECORDSET_URI | 対象となるレコードを収集するエンドポイント（GETメソッド）|
+| recordset_uri | RECORDSET_URI | 対象となるレコードを収集するエンドポイント（GETメソッド） |
 
 template_id、page_template_id、folder_uri、そしてtag_namespaceへ設定する値は、不動産管理開発パッケージ上で、以下の手順で取得する。
 
@@ -127,11 +127,11 @@ uvicorn main:app
 
 コマンドの説明:
 
-| コマンドの要素 |  説明  |
+| コマンドの要素 | 説明 |
 | ---- | ---- |
-|  uvicorn  | FastAPIベースの非同期Python Webアプリケーションを実行する |
-|  main:app  | Pythonファイルmain.pyの中で、FastAPIが生成する変数がapp |
-|  --reload  | 実行中にソースコードが変更されたとき、サーバーが自動的にリロードされる |
+| uvicorn | FastAPIベースの非同期Python Webアプリケーションを実行する |
+| main:app | Pythonファイルmain.pyの中で、FastAPIが生成する変数がapp |
+| --reload | 実行中にソースコードが変更されたとき、サーバーが自動的にリロードされる |
 
 デフォルトのポート番号は**8000**。  
 ポート番号を指定するときは **--port [ポート番号]** を後ろに付与する。
@@ -174,6 +174,7 @@ Webブラウザを開き、次のURLへアクセスする。
 
 ### 変更履歴
 
+- 2026-04-21 - Starlette仕様変更に伴う改修、バックアップファイルを1.0.4へ更新
 - 2025-10-23 - GEMBA Note V7に伴う更新
 - 2025-04-22 - 環境変数.envを参照、「最後に生成したノートを開く」を追加
 - 2025-03-03 - バックアップファイルを1.0.1から1.0.3へ更新

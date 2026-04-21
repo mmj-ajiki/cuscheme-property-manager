@@ -37,15 +37,15 @@ Then rename it to **.env**.
 
 Inside the server program, the necessary parameters for custom URL scheme are set with environment variables.
 
-|  Parameter Name  | Environment Variable | Description  |
+| Parameter Name | Environment Variable | Description |
 | ---- | ---- | ---- |
 | - | APP_LANG | Language: en - English ja - Japanese |
 | - | APP_URI_SCHEME | URI scheme to invoke GEMBA Note or GEMBA Note Viewer |
 | access_id | - | Key for keeing the specified access token |
-| access_token  | - | The token to access the GEMBA Note server |
+| access_token | - | The token to access the GEMBA Note server |
 | template_id | NOTE_TEMPLATE_ID | Target note template ID |
 | page_template_id | PAGE_TEMPLATE_ID | Target page template ID |
-| folder_uri  | FOLDER_URI | Folder to store the created note |
+| folder_uri | FOLDER_URI | Folder to store the created note |
 | tag_namespace | TAG_NAMESPACE | Target tag namespace |
 | internal_id | - | ID internally used in the server |
 | note_new_uri | NOTE_NEW_URI | Endpoint to get a URL of the created note |
@@ -161,6 +161,7 @@ This sever is not designed to allow multiple users access.
 
 ### Updated History
 
+- APR-21-2026 - Fixed for Starlette, upgraded backup file to 1.0.4
 - OCT-23-2025 - Modified for V7
 - APR-22-2025 - Referred to .env and added 'Open the last generated note'
 - MAR-03-2025 - Upgraded backup file froｍ 1.0.1 to 1.0.2
