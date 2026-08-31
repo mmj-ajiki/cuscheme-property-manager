@@ -1,6 +1,9 @@
 #
 # 環境変数の定義
 #
+# アクセスIDとアクセストークン（仮）
+ACCESS_ID=abcdefg
+ACCESS_TOKEN=abcdefg456
 # アプリの言語 en - 英語, ja - 日本語
 APP_LANG=ja
 # アプリのURLスキーム：どのMetaMoJiアプリで起動するか
@@ -9,18 +12,11 @@ APP_LANG=ja
 # Version 7:
 # eyachoch7（eYACHO）、eyachoch7s（eYACHOビューアー）、gembanotech7（GEMBA Note）、gembanotech7s（GEMBA Noteビューアー）
 APP_URI_SCHEME=gembanotech7
-# template_id: ノートテンプレートのIDを設定する
-NOTE_TEMPLATE_ID=https://mps.metamoji.com/link/***.mmjloc
-# page_template_id: ページテンプレートのIDを設定する
-PAGE_TEMPLATE_ID=https://mps.metamoji.com/link/***.mmjloc
-# folder_uri: ノートを保存するフォルダを設定する
-FOLDER_URI=https://mps.metamoji.com/link/***.mmjloc
-# tag_namespace: 対象となるタグスキーマを設定する
-TAG_NAMESPACE=com.metamoji.package.gemba.***.***
-# note_new_uri
-NOTE_NEW_URI=http://127.0.0.1:8000/created_note
 # 複数ページを生成するCSVファイル
 CSV_FILE=csv/propertyList_ja.csv
-# recordset_uri
-RECORDSET_URI=http://127.0.0.1:8000/recordset
+# 一時ファイルを保存するフォルダ
+IMAGE_FOLDER=_UploadedFiles/Images
+PDF_FOLDER=_UploadedFiles/PDF
+# プロファイル管理ファイル
+PROFILES_FILE=utils/profiles_ja.json
 # ----- END OF FILE -----

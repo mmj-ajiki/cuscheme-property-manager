@@ -1,0 +1,18 @@
+{
+  "property": {
+    "template_id": "https://mps.metamoji.com/link/N8xGqjVWr2Dm7KcLpY4sTbZh.mmjloc",
+    "page_template_id": "https://mps.metamoji.com/link/Q3mRkXv9HtCp6JnBwL5dFsYa.mmjloc",
+    "tag_namespace": "com.metamoji.package.gemba.7A91E5F4-3D2C-4B8A-9F17-6C2E4D8A91B3.Property",
+    "folder_uri": "https://mps.metamoji.com/link/Y2dLpWm6HxKq9TrVcN4gFjZb.mmjloc",
+    "note_new_uri": "http://localhost:8000/created_note",
+    "recordset_uri": "http://localhost:8000/recordset"
+  },
+  "property_media": {
+    "template_id": "https://mps.metamoji.com/link/Z7pNcTg4VmKx2QrHbD8jWyLf.mmjloc",
+    "page_template_id": "https://mps.metamoji.com/link/M5hKvQx8RpTn3GcZjW7dBySa.mmjloc",
+    "tag_namespace": "com.metamoji.package.gemba.C8F2A7D1-5E4B-43C9-B2A6-1D7F9E3C5A84.propertyPhoto",
+    "folder_uri": "https://mps.metamoji.com/link/Y2dLpWm6HxKq9TrVcN4gFjZb.mmjloc",
+    "note_new_uri": "http://localhost:8000/created_note",
+    "recordset_uri": "http://localhost:8000/recordset_media"
+  }
+}

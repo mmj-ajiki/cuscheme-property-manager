@@ -1,4 +1,5 @@
 fastapi
 Jinja2
 python-dotenv
+python-multipart
 uvicorn

@@ -1,7 +1,7 @@
 Name,Type,Price,Address
 Blue Lagoon Resort,Other,750000,"321 Ocean View Rd, Miami, FL 33109"
-Cedarwood House,Single-family Home,420000,"789 Cedarwood Ln, Dallas, TX 75201"
-Maplewood Residence,Single-family Home,350000,"123 Maple St, Denver, CO 80201"
+Cedarwood House,"Single-family Home",420000,"789 Cedarwood Ln, Dallas, TX 75201"
+Maplewood Residence,"Single-family Home",350000,"123 Maple St, Denver, CO 80201"
 Sunrise Land,Land,150000,"123 Country Lane, Nashville, TN 37201"
 Green Acres Plot,Land,75000,"456 Country Rd, Austin, TX 78701"
 Downtown Office Space,Office,2500,"321 Business Ln, San Francisco, CA 94101"

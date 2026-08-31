@@ -1,6 +1,9 @@
 #
 # Environment Variables for the Custom URL Scheme in GEMBA Note
 #
+# Temporary Access ID and Token
+ACCESS_ID=abcdefg
+ACCESS_TOKEN=abcdefg456
 # Language en - English, ja - Japanese
 APP_LANG=en
 # URL Scheme of the target application
@@ -9,18 +12,11 @@ APP_LANG=en
 # Version 7:
 # eyachoch7（eYACHO）、eyachoch7s（eYACHO Viewer）、gembanotech7（GEMBA Note）、gembanotech7s（GEMBA Note Viwer）
 APP_URI_SCHEME=gembanotech7
-# template_id: Update it with your note template
-NOTE_TEMPLATE_ID=https://mps-gd.metamoji.com/link/***.mmjloc
-# page_template_id: Update it with your page template
-PAGE_TEMPLATE_ID=https://mps-gd.metamoji.com/link/***.mmjloc
-# folder_uri: Update it with your folder
-FOLDER_URI=https://mps-gd.metamoji.com/link/***.mmjloc
-# tag_namespace: Update it with your tag scheme
-TAG_NAMESPACE=com.metamoji.package.gemba.***.***
-# note_new_uri
-NOTE_NEW_URI=http://127.0.0.1:8000/created_note
 # CSV file for multiple pages
 CSV_FILE=csv/propertyList_en.csv
-# recordset_uri
-RECORDSET_URI=http://127.0.0.1:8000/recordset
+# Folders to store temporary files
+IMAGE_FOLDER=_UploadedFiles/Images
+PDF_FOLDER=_UploadedFiles/PDF
+# Profile configuration file
+PROFILES_FILE=utils/profiles_en.json
 # ----- END OF FILE -----

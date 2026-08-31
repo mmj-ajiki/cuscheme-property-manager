@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>物件画像フォーム</title>
+        <link rel="stylesheet" href="/static/css/styles.css">
+        <link rel="icon" type="image/png" href="/static/favicon.ico">
+    </head>
+    <body>
+        <a href=".">トップページへ</a>
+        <h1>物件情報</h1>
+        <form id="propertyForm" action="#">
+            <table>
+            <tr>
+                <th>名称</th>
+                <td><input type="text" id="p_name" name="p_name" placeholder="物件名称を記入" required></td>
+            </tr>
+            <tr>
+                <th>画像</th>
+                <td><input type="file" id="image" accept="image/png,image/jpeg" required></td>
+            </tr>
+            <tr>
+                <th>PDF</th>
+                <td><input type="file" id="pdf" accept="application/pdf" required></td>
+            </tr>
+            </table>
+            <input type="hidden" id="protocol" name="protocol" value={{ protocol }}>
+            <input type="hidden" id="parameters" name="parameters" value={{ parameters }}>
+            <input type="hidden" id="recordset_uri" name="recordset_uri" value={{ recordset_uri }}>
+            <input type="submit" value="作成">
+        </form>
+    <script>
+        let form = document.querySelector("#propertyForm");
+        form.addEventListener("submit", async function(event) {
+            // event.preventDefault(); // Not to reload the page
+            await newImagePdfNote();
+        });
+    
+        // eYACHO/GEMBA Noteにノートを作成する関数
+        async function newImagePdfNote() {
+            let protocol = document.getElementById("protocol").value;
+            if (protocol == 'None') {
+                alert("APP_URI_SCHEMEが設定されていません。");
+                return;
+            }
+            let parameters = document.getElementById("parameters").value;
+            if (parameters == '') {
+                alert("環境変数を確認してください。");
+                return;
+            }
+            let recordset_uri = document.getElementById("recordset_uri").value;
+            if (recordset_uri == 'None') {
+                alert("recordset_uriが設定されていません。");
+                return;
+            }
+
+            const pName = encodeURI(document.getElementById("p_name").value);
+            const image_file = document.getElementById("image").files[0];
+            const pdf_file = document.getElementById("pdf").files[0];
+
+            const formData = new FormData();
+            formData.append("files", image_file);
+            formData.append("files", pdf_file);
+
+            // 画像ファイルをアップロードする
+            const response = await fetch("/upload_media", {
+                method: "POST",
+                body: formData
+            });
+            if (!response.ok) {
+                console.error("HTTP error:", response.status);
+                console.error(await response.text());
+                return;
+            }
+
+            const path_list = await response.json(); // [image_path, pdf_path]
+            let url = protocol + ':///nsk/new' + parameters;
+            url += '&recordset_uri=' + recordset_uri;
+            url += '?data=' + pName + ',' + path_list.join(',');
+            console.log(url);
+            window.location.href = url;
+        }
+    </script>
+    </body>
+</html>

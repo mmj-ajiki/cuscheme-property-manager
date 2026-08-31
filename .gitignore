@@ -139,5 +139,5 @@ metrics_output/
 test/
 script_usage.ipynb
 
-# Related File
-related_files/
+# Ignore _ folders
+_*
