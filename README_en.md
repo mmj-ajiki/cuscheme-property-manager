@@ -247,6 +247,7 @@ The following link is available when a note is successfully generated with eithe
 
 ### Updated History
 
+- NOV-16-2026 - Enabled event.preventDefault()
 - AUG-31-2026 - Added form creation with image and PDF, upgraded backup file to 1.0.3
 - APR-21-2026 - Fixed for Starlette
 - OCT-23-2025 - Modified for V7
